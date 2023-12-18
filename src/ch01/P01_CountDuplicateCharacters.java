@@ -16,4 +16,24 @@ public class P01_CountDuplicateCharacters {
         }
         return result;
     }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // 사용자로부터 문자열을 입력 받습니다.
+        System.out.print("문자열을 입력하세요: ");
+        String inputString = scanner.nextLine();
+
+        // P01_CountDuplicateCharacters 객체를 생성합니다.
+        P01_CountDuplicateCharacters counter = new P01_CountDuplicateCharacters();
+
+        // countDuplicateCharacters 메서드를 호출하여 중복 문자의 빈도수를 계산합니다.
+        Map<Character, Integer> result = counter.countDuplicateCharacters(inputString);
+
+        // 결과를 출력합니다.
+        System.out.println("각 문자의 빈도수:");
+        for (Map.Entry<Character, Integer> entry : result.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+    }
+
 }
