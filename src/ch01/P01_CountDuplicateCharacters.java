@@ -35,5 +35,4 @@ public class P01_CountDuplicateCharacters {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
-
 }
