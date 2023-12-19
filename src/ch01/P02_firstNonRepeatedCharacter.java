@@ -1,14 +1,11 @@
 package ch01;
 // 주어진 문자열에서 반복되지 않는 첫 번째 문자를 반환하는 프로그램을 작성하라.
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class P02_firstNonRepeatedCharacter {
 
-
+    private static final int EXTENDD_ASCII_CODES = 256;
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -17,39 +14,32 @@ public class P02_firstNonRepeatedCharacter {
         System.out.print("문자열을 입력하세요: ");
         String str = scanner.nextLine();
 
-        // HashMap 선언
-        HashMap<Character, Integer> countChar = new HashMap<>();
-        int min = 100000;
+        // 첫번째 해법
+        // 문자열을 한 번 순회하면서 배열을 생성해 문자열에서 한 번만 나오는 문자들의 인덱스를 저장한다.
+        // 이후 반복 되지 않는 문자들을 포함하는 이 배ㅕㄹ에서 가장 작은 인덱스를 반환한다.
+        int[] flags = new int[EXTENDD_ASCII_CODES];
 
-        for (int i = 0; i < str.length(); i++) {
+        for(int i = 0; i < flags.length; i++){
+            flags[i] = -1;
+        }
+
+        for(int i = 0; i <str.length(); i++){
             char ch = str.charAt(i);
-            // 각 문자의 빈도수 세기
-            countChar.compute(ch, (k, v) -> (v == null) ? 1 : ++v);
-        }
-        // 빈도수가 1인 문자 구하기
-        ArrayList<Character> index = new ArrayList<>(); // 빈도수가 1인 문자를 담은 배열 선언
-
-        countChar.forEach((key, value) -> { // forecah문으로 HashMap 전체 값 불러오기
-//            System.out.println(key +" " + value);
-            if (value == 1) {
-                index.add(key);
-            }
-        });
-
-        // 그 문자들 중에서 str의 indexOf를 사용하여 인덱스를 구하기
-        for (Character character : index) { // forecah문으로 ArrayList 전체 값 불러오기
-//            System.out.println(character);
-            int strIndex = str.indexOf(character);
-//            System.out.println(strIndex);
-            // 제일 작은 인덱스 값을 구하기
-            if (min > strIndex) {
-                min = strIndex;
+            if(flags[ch] == -1){
+                flags[ch] = i;
+            } else {
+                flags[ch] = -2;
             }
         }
 
-        char result = str.charAt(min);
+        int position = Integer.MAX_VALUE;
+        for(int i = 0; i < EXTENDD_ASCII_CODES; i++){
+            if(flags[i] >= 0){
+                position = Math.min(position, flags[i]);
+            }
+        }
 
-
+        char result = (position == Integer.MAX_VALUE) ? Character.MIN_VALUE : str.charAt(position);
         // 결과 출력
         System.out.println("반복되지 않는 첫 번째 문자 : " + result);
     }
