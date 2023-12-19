@@ -34,6 +34,7 @@ public class P01_CountDuplicateCharacters {
     }
 
     // 메인
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -41,7 +42,9 @@ public class P01_CountDuplicateCharacters {
         System.out.print("문자열을 입력하세요: ");
         String inputString = scanner.nextLine();
 
+
         // 2. countDuplicateCharacters 메서드를 호출하여 중복 문자의 빈도수 계산
+
         Map<String, Long> result = countDuplicateCharacters(inputString);
 
         // 3. 결과 출력
