@@ -38,13 +38,18 @@ public class P03_reverseWords {
     private static final Pattern PATTERN = Pattern.compile(" +");
 
     // 단어를 뒤집어 반환하는 메서드
-    public static String reverseWords(String str) {
+    public static String reverseWords2(String str) {
         // 정규표현식을 사용하여 문자열을 공백을 기준으로 분리하고 스트림으로 변환
         return PATTERN.splitAsStream(str)
                 // 각 단어를 뒤집은 후 스트림으로 반환
                 .map(w -> new StringBuilder(w).reverse())
                 // 뒤집은 단어를 공백으로 연결하여 문자열로 반환
                 .collect(Collectors.joining(" "));
+    }
+
+    // 단어를 뒤집어 반환하는 메서드
+    public static String reverseWords3(String str) {
+        return new StringBuilder(str).reverse().toString();
     }
 
     public static void main(String[] args) {
@@ -57,7 +62,7 @@ public class P03_reverseWords {
         String inputString = scanner.nextLine();
 
         // 입력 받은 문자열을 뒤집은 결과를 얻음
-        String result = reverseWords(inputString);
+        String result = reverseWords3(inputString);
 
         // 3. 결과 출력
         System.out.println("뒤집은 문자 : " + result);
