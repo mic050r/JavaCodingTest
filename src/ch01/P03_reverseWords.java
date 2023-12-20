@@ -2,14 +2,15 @@ package ch01;
 
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class P03_reverseWords {
 
     // 공백 문자 상수 정의
     private static final String WHITESPACE = " ";
-
     // 단어를 뒤집어 반환하는 메서드
-    public static String reverseWords(String str) {
+    public static String reverseWords1(String str) {
         // 입력 문자열을 공백을 기준으로 분리하여 배열에 저장
         String[] words = str.split(WHITESPACE);
         // 결과를 저장할 StringBuilder 객체 생성
@@ -31,6 +32,19 @@ public class P03_reverseWords {
 
         // 최종 결과 문자열 반환
         return reversedString.toString();
+    }
+
+    // 정규표현식 패턴: 하나 이상의 공백을 찾음
+    private static final Pattern PATTERN = Pattern.compile(" +");
+
+    // 단어를 뒤집어 반환하는 메서드
+    public static String reverseWords(String str) {
+        // 정규표현식을 사용하여 문자열을 공백을 기준으로 분리하고 스트림으로 변환
+        return PATTERN.splitAsStream(str)
+                // 각 단어를 뒤집은 후 스트림으로 반환
+                .map(w -> new StringBuilder(w).reverse())
+                // 뒤집은 단어를 공백으로 연결하여 문자열로 반환
+                .collect(Collectors.joining(" "));
     }
 
     public static void main(String[] args) {
