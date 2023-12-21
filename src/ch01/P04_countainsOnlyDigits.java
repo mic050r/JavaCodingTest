@@ -24,6 +24,11 @@ public class P04_countainsOnlyDigits {
         return true;
     }
 
+    public static Boolean P04_countainsOnlyDigits2(String str){
+        return !str.chars()
+                .anyMatch(n -> !Character.isDigit(n));
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -32,7 +37,7 @@ public class P04_countainsOnlyDigits {
         System.out.print("문자열을 입력하세요: ");
         String inputString = scanner.nextLine();
 
-        Boolean result = P04_countainsOnlyDigits1(inputString);
+        Boolean result = P04_countainsOnlyDigits2(inputString);
 
         // 3. 결과 출력
         System.out.println(result);
