@@ -29,6 +29,10 @@ public class P04_countainsOnlyDigits {
                 .anyMatch(n -> !Character.isDigit(n));
     }
 
+    public static Boolean P04_countainsOnlyDigits3(String str){
+        return str.matches("[0-9]+");
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -37,7 +41,7 @@ public class P04_countainsOnlyDigits {
         System.out.print("문자열을 입력하세요: ");
         String inputString = scanner.nextLine();
 
-        Boolean result = P04_countainsOnlyDigits2(inputString);
+        Boolean result = P04_countainsOnlyDigits3(inputString);
 
         // 3. 결과 출력
         System.out.println(result);
