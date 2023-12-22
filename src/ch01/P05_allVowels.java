@@ -2,6 +2,9 @@ package ch01;
 
 import java.util.*;
 
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.partitioningBy;
+
 //주어진 문자열에서 모음과 자음 개수를 세는 프로그램을 작성하라.
 //        대상은 자음이 5개(a,e,i,o,u)인 영어이다.
 public class P05_allVowels {
@@ -55,6 +58,18 @@ public class P05_allVowels {
                 .count();
 
         return Pair.of(vowels, consonants);
+    }
+
+    public static Pair<Integer, Integer> countVowelsAndConsonants3(String str){
+        str = str.toLowerCase();
+
+
+        Map<Boolean, Long> result = str.chars()
+                .mapToObj(c -> (char) c)
+                .filter(ch -> (ch >= 'a' && ch <= 'z'))
+                .collect(partitioningBy(c -> allVowels.contains(c), counting()));
+
+        return Pair.of(result.get(true), result.get(false));
     }
 
 
