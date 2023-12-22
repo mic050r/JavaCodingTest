@@ -1,8 +1,10 @@
 package ch01;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
+
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.partitioningBy;
+
 //주어진 문자열에서 모음과 자음 개수를 세는 프로그램을 작성하라.
 //        대상은 자음이 5개(a,e,i,o,u)인 영어이다.
 public class P05_allVowels {
@@ -25,6 +27,51 @@ public class P05_allVowels {
         result.put(cnt, str.length() - cnt );
         return result;
     }
+
+    private static final Set<Character> allVowels = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u'));
+    public static Pair<Integer, Integer> countVowelsAndConsonants(String str){
+        str = str.toLowerCase();
+        int vowels = 0;
+        int consonants = 0;
+
+        for (int i = 0; i < str.length(); i++){
+            char ch = str.charAt(i);
+            if(allVowels.contains(ch)) {
+                vowels++;
+            }
+            else if((ch >= 'a' && ch <= 'z')) {
+                consonants++;
+            }
+        }
+        return Pair.of(vowels, consonants);
+    }
+
+    public static Pair<Integer, Integer> countVowelsAndConsonants2(String str){
+        str = str.toLowerCase();
+
+        long vowels = str.chars()
+                .filter(c -> allVowels.contains((char)c))
+                .count();
+
+        long consonants = str.chars()
+                .filter(ch -> (ch >= 'a' && ch <= 'z'))
+                .count();
+
+        return Pair.of(vowels, consonants);
+    }
+
+    public static Pair<Integer, Integer> countVowelsAndConsonants3(String str){
+        str = str.toLowerCase();
+
+
+        Map<Boolean, Long> result = str.chars()
+                .mapToObj(c -> (char) c)
+                .filter(ch -> (ch >= 'a' && ch <= 'z'))
+                .collect(partitioningBy(c -> allVowels.contains(c), counting()));
+
+        return Pair.of(result.get(true), result.get(false));
+    }
+
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
