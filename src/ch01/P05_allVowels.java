@@ -43,6 +43,21 @@ public class P05_allVowels {
         return Pair.of(vowels, consonants);
     }
 
+    public static Pair<Integer, Integer> countVowelsAndConsonants2(String str){
+        str = str.toLowerCase();
+
+        long vowels = str.chars()
+                .filter(c -> allVowels.contains((char)c))
+                .count();
+
+        long consonants = str.chars()
+                .filter(ch -> (ch >= 'a' && ch <= 'z'))
+                .count();
+
+        return Pair.of(vowels, consonants);
+    }
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
