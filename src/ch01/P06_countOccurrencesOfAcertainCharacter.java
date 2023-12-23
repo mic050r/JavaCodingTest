@@ -58,6 +58,17 @@ public class P06_countOccurrencesOfAcertainCharacter {
        return count;
     }
 
+    public static int countOccurrencesOfAcertainCharacter4(String str, char ch) {
+        // 1. filter() 사용
+        // str.chars() 메서드를 사용하여 문자열을 IntStream으로 변환하고,
+        // filter 메서드를 이용하여 특정 문자와 일치하는 문자들만 남기고 나머지는 제거.
+        // 최종적으로 count 메서드를 사용하여 일치하는 문자의 개수를 세어 반환
+        return (int) str.chars().filter(c -> c == ch).count();
+
+    }
+
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("문자열 입력 : ");
