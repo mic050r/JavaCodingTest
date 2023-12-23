@@ -1,3 +1,4 @@
+/*
 package ch01;
 
 import java.util.*;
@@ -89,3 +90,4 @@ public class P05_allVowels {
 
 
 }
+*/
