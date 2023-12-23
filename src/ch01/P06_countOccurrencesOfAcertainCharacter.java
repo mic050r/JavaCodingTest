@@ -63,8 +63,12 @@ public class P06_countOccurrencesOfAcertainCharacter {
         // str.chars() 메서드를 사용하여 문자열을 IntStream으로 변환하고,
         // filter 메서드를 이용하여 특정 문자와 일치하는 문자들만 남기고 나머지는 제거.
         // 최종적으로 count 메서드를 사용하여 일치하는 문자의 개수를 세어 반환
-        return (int) str.chars().filter(c -> c == ch).count();
+//        return (int) str.chars().filter(c -> c == ch).count();
 
+        // 2. reduce() 사용
+        // 문자열을 IntStream으로 변환하고, 특정 문자와 일치하는 경우 1, 아닌 경우 0으로 매핑한 뒤
+        // reduce 함수를 사용하여 모든 값을 더하여 특정 문자의 발생 횟수를 계산
+        return str.chars().map(c -> (c == ch) ? 1 : 0).reduce(0, Integer::sum);
     }
 
 
