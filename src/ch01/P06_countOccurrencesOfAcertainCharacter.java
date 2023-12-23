@@ -47,15 +47,26 @@ public class P06_countOccurrencesOfAcertainCharacter {
     }
 
 
+    public static int countOccurrencesOfAcertainCharacter3(String str, char ch) {
+       int count = 0;
+
+       for(int i = 0; i < str.length(); i++){
+           if(str.charAt(i) == ch) { // 특정 문자와 입력받은 문자열의 문자와 같으면 count 1 증가
+               count++;
+           }
+       }
+       return count;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("문자열 입력 : ");
         String inputString = sc.next();
 
         System.out.print("특정 문자 입력 : ");
-        String ch = sc.next();
+        char ch = sc.next().charAt(0);
 
-        int result = countOccurrencesOfAcertainCharacter2(inputString, ch);
+        int result = countOccurrencesOfAcertainCharacter3(inputString, ch);
         System.out.println(ch + "의 빈도수 : " + result);
 
         sc.close(); // Scanner 객체 닫기
