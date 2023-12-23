@@ -33,6 +33,19 @@ public class P06_countOccurrencesOfAcertainCharacter {
         return str.length() - str.replace(String.valueOf(ch), "").length();
     }
 
+    public static int countOccurrencesOfAcertainCharacter2(String str, String ch) {
+
+        if(ch.codePointCount(0, ch.length()) > 1){
+            // 주어진 문자열에 유니코드 문자가 둘 이상이면
+            return -1;
+        }
+
+        int result = str.length() - str.replace(ch, "").length();
+
+        // ch.length()가 2를 반환하면 유니코드 대리 쌍이라는 뜻
+        return ch.length() == 2 ? result/2 : result;
+    }
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -40,9 +53,9 @@ public class P06_countOccurrencesOfAcertainCharacter {
         String inputString = sc.next();
 
         System.out.print("특정 문자 입력 : ");
-        char ch = sc.next().charAt(0);
+        String ch = sc.next();
 
-        int result = countOccurrencesOfAcertainCharacter1(inputString, ch);
+        int result = countOccurrencesOfAcertainCharacter2(inputString, ch);
         System.out.println(ch + "의 빈도수 : " + result);
 
         sc.close(); // Scanner 객체 닫기
