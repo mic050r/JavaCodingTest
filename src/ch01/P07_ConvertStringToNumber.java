@@ -9,6 +9,8 @@ public class P07_ConvertStringToNumber {
     private static final String TO_FLOAT = "45.823F";
     private static final String TO_DOUBLE = "13.83423D";
 
+    private static final String WRONG_NUMBER = "138w";
+
     public static void main(String args){
 //        1. String을 int나 long, float, double로 변환하는 방법
 //        int toInt = Integer.parseInt(TO_INT);
@@ -21,6 +23,22 @@ public class P07_ConvertStringToNumber {
         Long toLong = Long.valueOf(TO_LONG);
         Float toFloat = Float.valueOf(TO_FLOAT);
         Double toDouble = Double.valueOf(TO_DOUBLE);
+
+//        3. String을 성공적으로 변환하지 못했을 때 -> NumberFormatException 예외 발생
+        try{
+            Integer toIntWrong1 = Integer.valueOf(WRONG_NUMBER);
+        }catch (NumberFormatException e){
+            System.err.println(e);
+            // 핸들 예외
+        }
+
+        try{
+            int toIntWrong2 = Integer.parseInt(WRONG_NUMBER);
+        }catch (NumberFormatException e){
+            System.err.println(e);
+            // 핸들 예외
+        }
+
 
     }
 }
