@@ -5,8 +5,7 @@ import java.util.Scanner;
 public class P08_removeWhitespaces {
 
     public static String removeWhitespaces(String str) {
-        str = str.replaceAll(" ", "");
-        return str;
+        return str.replaceAll("//s", "");
     }
 
 
