@@ -32,6 +32,15 @@ public class P9_joinByDelimiter {
 //        Hello,world,Java,programming
     }
 
+    public static String joinByDelimiter2(String[] str, String delimiter) {
+        StringJoiner joiner = new StringJoiner(String.valueOf(delimiter));
+
+        for (String arg : str){
+            joiner.add(arg);
+        }
+        return joiner.toString();
+    }
+
 
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
@@ -41,7 +50,7 @@ public class P9_joinByDelimiter {
         System.out.print("구분자 입력 : ");
         String delimiter = sc.nextLine();
 
-        String result = joinByDelimiter1(inputString, delimiter);
+        String result = joinByDelimiter2(inputString, delimiter);
         System.out.println(result);
     }
 }
