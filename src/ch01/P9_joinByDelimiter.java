@@ -1,5 +1,7 @@
 package ch01;
 import java.util.*;
+import java.util.stream.Collectors;
+
 public class P9_joinByDelimiter {
     public static String joinByDelimiter(String[] str, String delimiter) {
         StringBuilder resultBuilder = new StringBuilder();
@@ -41,6 +43,11 @@ public class P9_joinByDelimiter {
         return joiner.toString();
     }
 
+    public static String joinByDelimiter3(String[] str, String delimiter) {
+        // 배열을 스트림으로 변환하고, 지정된 범위 내에서 요소를 가져온 후 구분자를 사용하여 문자열로 결합
+        return Arrays.stream(str, 0, str.length)
+                .collect(Collectors.joining(String.valueOf(delimiter)));
+    }
 
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
