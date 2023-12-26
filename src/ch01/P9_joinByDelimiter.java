@@ -20,6 +20,18 @@ public class P9_joinByDelimiter {
         return resultBuilder.toString();
     }
 
+    public static String joinByDelimiter1(String[] str, String delimiter) {
+        StringBuilder result = new StringBuilder();
+        int i = 0;
+        for(i = 0; i < str.length -1; i++){
+            result.append(str[i]).append(delimiter);
+//            Hello,world,Java,
+        }
+        result.append(str[i]); // i = 3
+        return result.toString();
+//        Hello,world,Java,programming
+    }
+
 
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
@@ -29,7 +41,7 @@ public class P9_joinByDelimiter {
         System.out.print("구분자 입력 : ");
         String delimiter = sc.nextLine();
 
-        String result = joinByDelimiter(inputString, delimiter);
+        String result = joinByDelimiter1(inputString, delimiter);
         System.out.println(result);
     }
 }
