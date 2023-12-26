@@ -1,0 +1,35 @@
+package ch01;
+import java.util.*;
+public class P9_joinByDelimiter {
+    public static String joinByDelimiter(String[] str, String delimiter) {
+        StringBuilder resultBuilder = new StringBuilder();
+
+        // 배열의 모든 요소에 대해 반복
+        for (int i = 0; i < str.length - 1; i++) {
+            // 현재 요소를 StringBuilder에 추가하고 구분자를 뒤에 붙임
+            resultBuilder.append(str[i]).append(delimiter);
+        }
+
+        // 배열의 마지막 요소에 대한 처리
+        if (str.length > 0) {
+            // 마지막 요소를 구분자와 함께 StringBuilder에 추가
+            resultBuilder.append(str[str.length - 1]);
+        }
+
+        // StringBuilder를 String으로 변환하여 최종 결과 반환
+        return resultBuilder.toString();
+    }
+
+
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+
+        String inputString[] = {"Hello", "world", "Java", "programming"};
+
+        System.out.print("구분자 입력 : ");
+        String delimiter = sc.nextLine();
+
+        String result = joinByDelimiter(inputString, delimiter);
+        System.out.println(result);
+    }
+}
