@@ -52,5 +52,8 @@ public class P9_joinByDelimiter {
 
         String result = joinByDelimiter2(inputString, delimiter);
         System.out.println(result);
+
+        // StringJoin(CharSequence delimiter, CharSequence ...elems)
+        String result3 = String.join(" ", "Hello", "world", "Java");
     }
 }
