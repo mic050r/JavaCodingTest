@@ -2,6 +2,7 @@ package ch01;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.IntStream;
 
 public class P10_permuteAndPrint {
     // 문자열의 순열을 출력하는 메서드
@@ -29,6 +30,18 @@ public class P10_permuteAndPrint {
         return permutations;
     }
 
+    private static void permutendPrintStream(String prefix, String str){
+        int n = str.length();
+
+        if(n == 0){
+            System.out.print(prefix + " ");
+        } else {
+            IntStream.range(0, n)
+                    .parallel()
+                    .forEach(i -> permutendPrintStream(prefix + str.charAt(i),
+                            str.substring(i+1, n) + str.substring(0,i)));
+        }
+    }
     public static void main(String[] args) {
         // 원하는 문자열로 변경 가능
         String inputString = "abc";
@@ -37,9 +50,12 @@ public class P10_permuteAndPrint {
         Set<String> permutations = P10_permuteAndPrint.permuteAndStore(inputString);
 
         // 결과 출력
+//        System.out.println("Permutations of " + inputString + ":");
+//        for (String permutation : permutations) {
+//            System.out.print(permutation);
+//        }
+
         System.out.println("Permutations of " + inputString + ":");
-        for (String permutation : permutations) {
-            System.out.print(permutation);
-        }
+        permutendPrintStream("", inputString);
     }
 }
